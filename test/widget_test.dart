@@ -7,13 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:islam_house/core/routing/app_routes.dart';
+import 'package:islam_house/islam_house.dart';
 
-import 'package:islam_house/main.dart';
+
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget( IslamHouse(appRoutes: AppRoutes(),));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
