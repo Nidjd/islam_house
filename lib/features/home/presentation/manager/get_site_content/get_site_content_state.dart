@@ -20,5 +20,5 @@ final class GetSiteContentFailureState extends GetSiteContentState {
 final class GetSiteContentSuccessState extends GetSiteContentState {
   final List<SiteContent> siteContentList;
 
- const GetSiteContentSuccessState(this.siteContentList);
+  const GetSiteContentSuccessState(this.siteContentList);
 }

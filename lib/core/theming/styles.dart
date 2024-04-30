@@ -6,4 +6,10 @@ class Styles {
     fontWeight: FontWeight.w500,
     color: Colors.white,
   );
+
+  static TextStyle font16BlueBold = TextStyle(
+    color: Colors.blue[900],
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 }

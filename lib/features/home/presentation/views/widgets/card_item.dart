@@ -34,7 +34,7 @@ class CardItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                label,
+                correctLabel(label),
                 style: Styles.font23White500Weight,
               ),
               Text(
@@ -49,5 +49,37 @@ class CardItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String correctLabel(String label) {
+  if (label == 'showall') {
+    return 'إظهار الكل';
+  } else if (label == 'videos') {
+    return 'فيديوهات';
+  } else if (label == 'books') {
+    return 'كتب';
+  } else if (label == 'articles') {
+    return 'مقالات';
+  } else if (label == 'audios') {
+    return 'صوتيات';
+  } else if (label == 'fatwa') {
+    return 'فتوى';
+  } else if (label == 'favorites') {
+    return 'المفضلة';
+  } else if (label == 'quran') {
+    return 'القرآن';
+  } else if (label == 'cards') {
+    return 'بطاقات';
+  } else if (label == 'news') {
+    return 'الأخبار';
+  } else if (label == 'poster') {
+    return 'الملصقات';
+  } else if (label == 'apps') {
+    return 'التطبيقات';
+  } else if (label == 'khotab') {
+    return 'الخطب';
+  } else {
+    return label;
   }
 }

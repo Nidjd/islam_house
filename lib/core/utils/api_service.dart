@@ -7,9 +7,9 @@ class ApiServise {
 
   ApiServise(this._dio);
 
-  Future<List<dynamic>> getData({required String endPoint}) async {
+  Future<dynamic> getData({required String endPoint}) async {
     Response response = await _dio.get("$_baseUrl$endPoint");
-    print('----------------${response.data}-----------');
+ 
     return response.data;
   }
 }

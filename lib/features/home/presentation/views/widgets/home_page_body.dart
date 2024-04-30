@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:islam_house/core/helpers/extensions.dart';
+import 'package:islam_house/core/routing/routes.dart';
 
 import 'package:islam_house/core/utils/custom_error_message.dart';
 import 'package:islam_house/core/utils/custom_progress_indicator.dart';
@@ -26,7 +28,14 @@ class HomePageBody extends StatelessWidget {
                       itemBuilder: (context, index) => CardItem(
                         label:
                             state.siteContentList[index].blockName.toString(),
-                        onTap: () {},
+                        onTap: () {
+                          if (state.siteContentList[index].blockName
+                                  .toString() ==
+                              'videos') {
+                            context.pushNamed(
+                                Routes.videosSectionPage, context);
+                          }
+                        },
                         itemCount: state.siteContentList[index].itemsCount!,
                       ),
                       itemCount: state.siteContentList.length,

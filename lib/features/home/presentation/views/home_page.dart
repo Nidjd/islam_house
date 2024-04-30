@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:islam_house/core/utils/service_locator.dart';
@@ -12,9 +11,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: BlocProvider(
-        create: (context) => GetSiteContentCubit(getIt.get<HomeRepoImpl>())..getSiteContent(),
+        create: (context) =>
+            GetSiteContentCubit(getIt.get<HomeRepoImpl>())..getSiteContent(),
         child: const HomePageBody(),
       ),
     );
