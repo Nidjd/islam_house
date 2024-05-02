@@ -37,7 +37,7 @@ class _ShowVideoState extends State<ShowVideo> {
     _controller.dispose();
     super.dispose();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,51 +66,53 @@ class _ShowVideoState extends State<ShowVideo> {
             const SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(14)),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () async {
-                        await _controller.play();
-                      },
-                      icon: const Icon(
-                        Icons.play_arrow,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
-                        await _controller.pause();
-                      },
-                      icon: const Icon(
-                        Icons.pause,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: _controller,
-                      builder: (context, VideoPlayerValue value, child) {
-                        //Do Something with the value.
-                        return Text(
-                          value.position.toString().substring(0, 7),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
+            _controller.value.isInitialized
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          borderRadius: BorderRadius.circular(14)),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () async {
+                              await _controller.play();
+                            },
+                            icon: const Icon(
+                              Icons.play_arrow,
+                              color: Colors.white,
+                              size: 28,
+                            ),
                           ),
-                        );
-                      },
+                          IconButton(
+                            onPressed: () async {
+                              await _controller.pause();
+                            },
+                            icon: const Icon(
+                              Icons.pause,
+                              color: Colors.white,
+                              size: 28,
+                            ),
+                          ),
+                          ValueListenableBuilder(
+                            valueListenable: _controller,
+                            builder: (context, VideoPlayerValue value, child) {
+                              //Do Something with the value.
+                              return Text(
+                                value.position.toString().substring(0, 7),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-            ),
+                  )
+                : Container(),
           ],
         ),
       ),
