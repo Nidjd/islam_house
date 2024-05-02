@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 extension Navigation on BuildContext {
-  Future<dynamic> pushNamed(String routeName, BuildContext context) {
-    return Navigator.of(context).pushNamed(routeName);
+  Future<dynamic> pushNamed(String routeName, BuildContext context,[Object? data]) {
+    return Navigator.of(context).pushNamed(routeName,arguments: data);
   }
 
   Future<dynamic> pushReplacementNamed(String routeName, BuildContext context) {

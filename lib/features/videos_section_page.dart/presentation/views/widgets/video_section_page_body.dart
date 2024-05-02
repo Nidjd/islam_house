@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islam_house/constants.dart';
+import 'package:islam_house/core/helpers/extensions.dart';
+import 'package:islam_house/core/routing/routes.dart';
 import 'package:islam_house/core/theming/styles.dart';
 import 'package:islam_house/core/utils/custom_error_message.dart';
 import 'package:islam_house/core/utils/custom_progress_indicator.dart';
 import 'package:islam_house/features/videos_section_page.dart/presentation/manager/get_videos/get_videos_cubit.dart';
-import 'package:islam_house/features/videos_section_page.dart/presentation/views/widgets/video_item.dart';
+import 'package:islam_house/features/videos_section_page.dart/presentation/views/widgets/info_about_videos_item.dart';
 
 class VideoSectionPageBody extends StatefulWidget {
   const VideoSectionPageBody({
@@ -28,13 +30,18 @@ class _VideoSectionPageBodyState extends State<VideoSectionPageBody> {
             if (state is GetVideosSuccessState) {
               return Expanded(
                 child: ListView.builder(
-                  itemBuilder: (context, index) => VideoItem(
+                  itemBuilder: (context, index) => InfoAboutVideosItem(
                     title: state.video[index].title ?? '',
                     description: state.video[index].description ?? '',
                     nameAuthor: state.video[index].preparedBy!.isEmpty
                         ? ''
                         : state.video[index].preparedBy![0].title!,
                     numberOfVideos: state.video[index].attachments!.length,
+                    onTap: () {
+                      context.pushNamed(Routes.videoDetailsView, context,
+                          state.video[index].attachments);
+                     
+                    },
                   ),
                   itemCount: state.video.length,
                 ),

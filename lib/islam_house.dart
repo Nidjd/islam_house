@@ -8,6 +8,8 @@ class IslamHouse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: const Locale('ar','AR'),
+      
       onGenerateRoute: appRoutes.generateRoutes,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
