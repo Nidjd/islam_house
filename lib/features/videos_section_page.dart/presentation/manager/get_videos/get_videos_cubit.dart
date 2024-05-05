@@ -12,7 +12,7 @@ class GetVideosCubit extends Cubit<GetVideosState> {
 
   Future<void> getVideosData({required String pageNumber}) async {
     emit(GetVideosLoadingState());
-    var result = await _videoSectionRepo.getVideos(pageNumber:pageNumber );
+    var result = await _videoSectionRepo.getVideos(pageNumber: pageNumber);
 
     result.fold((Failure fail) {
       emit(GetVideosFailureState(fail));

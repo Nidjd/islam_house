@@ -37,7 +37,7 @@ class _ShowVideoState extends State<ShowVideo> {
     _controller.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

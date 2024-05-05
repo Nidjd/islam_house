@@ -6,47 +6,47 @@ import 'package:islam_house/core/routing/routes.dart';
 import 'package:islam_house/core/theming/styles.dart';
 import 'package:islam_house/core/utils/custom_error_message.dart';
 import 'package:islam_house/core/utils/custom_progress_indicator.dart';
-import 'package:islam_house/features/videos_section_page.dart/presentation/manager/get_videos/get_videos_cubit.dart';
-import 'package:islam_house/features/videos_section_page.dart/presentation/views/widgets/info_about_videos_item.dart';
+import 'package:islam_house/features/article_section_page/presentation/manager/cubit/get_articles_cubit.dart';
+import 'package:islam_house/features/article_section_page/presentation/views/widgets/articel_item.dart';
 
-class VideoSectionPageBody extends StatefulWidget {
-  const VideoSectionPageBody({
+class ArticlePageBody extends StatefulWidget {
+  const ArticlePageBody({
     super.key,
   });
 
   @override
-  State<VideoSectionPageBody> createState() => _VideoSectionPageBodyState();
+  State<ArticlePageBody> createState() => _ArticlePageBodyState();
 }
 
-class _VideoSectionPageBodyState extends State<VideoSectionPageBody> {
+class _ArticlePageBodyState extends State<ArticlePageBody> {
   int currentNumber = 1;
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BlocBuilder<GetVideosCubit, GetVideosState>(
+        BlocBuilder<GetArticlesCubit, GetArticlesState>(
           builder: (context, state) {
-            if (state is GetVideosSuccessState) {
+            if (state is GetArticlesSuccessState) {
               return Expanded(
                 child: ListView.builder(
-                  itemBuilder: (context, index) => InfoAboutVideosItem(
-                    title: state.video[index].title ?? '',
-                    description: state.video[index].description ?? '',
-                    nameAuthor: state.video[index].preparedBy!.isEmpty
+                  itemBuilder: (context, index) => ArticleItem(
+                    label: state.article[index].title ?? '',
+                    description: state.article[index].description ?? '',
+                    name: state.article[index].preparedBy!.isEmpty
                         ? ''
-                        : state.video[index].preparedBy![0].title!,
-                    numberOfVideos: state.video[index].attachments!.length,
+                        : state.article[index].preparedBy![0].title!,
+                    countArticle:
+                        state.article[index].attachments?.length.toString() ??
+                            '',
                     onTap: () {
-                      context.pushNamed(Routes.videoDetailsView, context,
-                          state.video[index].attachments);
+                      context.pushNamed(Routes.articles, context,state.article[index].attachments);
                     },
                   ),
-                  itemCount: state.video.length,
+                  itemCount: state.article.length,
                 ),
               );
-            } else if (state is GetVideosFailureState) {
-              return CustomErrorMessage(message: state.failure.eerMessage);
+            } else if (state is GetArticlesFailureState) {
+              return CustomErrorMessage(message: state.errMessage);
             } else {
               return const Expanded(child: CustomProgreesIndicator());
             }
@@ -59,8 +59,8 @@ class _VideoSectionPageBodyState extends State<VideoSectionPageBody> {
             children: [
               TextButton(
                 onPressed: () async {
-                  await BlocProvider.of<GetVideosCubit>(context)
-                      .getVideosData(pageNumber: '1');
+                  await BlocProvider.of<GetArticlesCubit>(context)
+                      .getArticlesData(pageNumer: '1');
                   setState(() {});
                   currentNumber = 1;
                 },
@@ -71,8 +71,8 @@ class _VideoSectionPageBodyState extends State<VideoSectionPageBody> {
                   if (currentNumber > 1) {
                     currentNumber--;
                     setState(() {});
-                    await BlocProvider.of<GetVideosCubit>(context)
-                        .getVideosData(pageNumber: currentNumber.toString());
+                    await BlocProvider.of<GetArticlesCubit>(context)
+                        .getArticlesData(pageNumer: currentNumber.toString());
                   }
                 },
                 child: Text(
@@ -89,26 +89,27 @@ class _VideoSectionPageBodyState extends State<VideoSectionPageBody> {
               // ),
               TextButton(
                 onPressed: () async {
-                  if (currentNumber < pageNumbers!) {
+                  if (currentNumber < pageNumbersForArticle!) {
                     currentNumber++;
                     setState(() {});
-                    await BlocProvider.of<GetVideosCubit>(context)
-                        .getVideosData(pageNumber: currentNumber.toString());
+                    await BlocProvider.of<GetArticlesCubit>(context)
+                        .getArticlesData(pageNumer: currentNumber.toString());
                   }
                 },
                 child: Text('next',
                     style: Styles.font16BlueBold.copyWith(
-                      color: currentNumber == pageNumbers
+                      color: currentNumber == pageNumbersForArticle
                           ? Colors.grey
                           : Colors.blue[900],
                     )),
               ),
               TextButton(
                 onPressed: () async {
-                  await BlocProvider.of<GetVideosCubit>(context)
-                      .getVideosData(pageNumber: pageNumbers.toString());
+                  await BlocProvider.of<GetArticlesCubit>(context)
+                      .getArticlesData(
+                          pageNumer: pageNumbersForArticle.toString());
                   setState(() {
-                    currentNumber = pageNumbers!;
+                    currentNumber = pageNumbersForArticle!;
                   });
                 },
                 child: Text('last', style: Styles.font16BlueBold),

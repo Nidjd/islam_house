@@ -17,12 +17,14 @@ class VideoDetailsView extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
-          itemBuilder: (context, index) =>  Padding(
+          itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 4,
               vertical: 4,
             ),
-            child: VideoWithLabel(data: data[index],),
+            child: VideoWithLabel(
+              data: data[index],
+            ),
           ),
           itemCount: data.length,
         ),

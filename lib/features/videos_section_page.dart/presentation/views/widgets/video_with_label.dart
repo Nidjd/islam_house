@@ -13,8 +13,7 @@ class VideoWithLabel extends StatelessWidget {
 
   bool isYouTubeLink(String link) {
     final RegExp youtubePattern = RegExp(
-    r'^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$'
-    );
+        r'^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$');
     return youtubePattern.hasMatch(link);
   }
 
@@ -24,7 +23,6 @@ class VideoWithLabel extends StatelessWidget {
     final videoCardHeight = MediaQuery.of(context).size.height * (1 / 5);
     return GestureDetector(
       onTap: () {
-      
         if (isYouTubeLink(data.url!)) {
           Navigator.push(
             context,

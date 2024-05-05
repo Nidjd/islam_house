@@ -34,6 +34,10 @@ class HomePageBody extends StatelessWidget {
                               'videos') {
                             context.pushNamed(
                                 Routes.videosSectionPage, context);
+                          } else if (state.siteContentList[index].blockName
+                                  .toString() ==
+                              'articles') {
+                            context.pushNamed(Routes.articlePage, context);
                           }
                         },
                         itemCount: state.siteContentList[index].itemsCount!,

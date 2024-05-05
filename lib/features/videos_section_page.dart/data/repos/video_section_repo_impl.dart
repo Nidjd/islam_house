@@ -21,7 +21,7 @@ class VideoSectionRepoImpl implements VideoSectionRepo {
         videos.add(Datum.fromJson(item));
       }
       pageNumbers = VideoInfo.fromJson(data).links!.pagesNumber;
-      
+
       return right(videos);
     } catch (e) {
       if (e is DioException) {
