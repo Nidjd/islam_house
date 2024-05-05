@@ -25,27 +25,34 @@ class HomePageBody extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GridView.builder(
-                      itemBuilder: (context, index) => CardItem(
-                        label:
-                            state.siteContentList[index].blockName.toString(),
-                        onTap: () {
-                          if (state.siteContentList[index].blockName
-                                  .toString() ==
-                              'videos') {
-                            context.pushNamed(
-                                Routes.videosSectionPage, context);
-                          } else if (state.siteContentList[index].blockName
-                                  .toString() ==
-                              'articles') {
-                            context.pushNamed(Routes.articlePage, context);
-                          } else if (state.siteContentList[index].blockName
-                                  .toString() ==
-                              'books') {
-                            context.pushNamed(Routes.booksPage, context);
-                          }
-                        },
-                        itemCount: state.siteContentList[index].itemsCount!,
-                      ),
+                      itemBuilder: (context, index) {
+                        
+                        return CardItem(
+                          label:
+                              state.siteContentList[index].blockName.toString(),
+                          onTap: () {
+                            if (state.siteContentList[index].blockName
+                                    .toString() ==
+                                'videos') {
+                              context.pushNamed(
+                                  Routes.videosSectionPage, context);
+                            } else if (state.siteContentList[index].blockName
+                                    .toString() ==
+                                'articles') {
+                              context.pushNamed(Routes.articlePage, context);
+                            } else if (state.siteContentList[index].blockName
+                                    .toString() ==
+                                'books') {
+                              context.pushNamed(Routes.booksPage, context);
+                            }else if (state.siteContentList[index].blockName
+                                    .toString() ==
+                                'khotab') {
+                              context.pushNamed(Routes.khotbaPage, context);
+                            }
+                          },
+                          itemCount: state.siteContentList[index].itemsCount!,
+                        );
+                      },
                       itemCount: state.siteContentList.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(

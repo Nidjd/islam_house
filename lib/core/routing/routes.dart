@@ -7,5 +7,8 @@ class Routes {
   
   static const String books = '/books';
   static const String booksPage = '/books-page';
+  
+  static const String khotba = '/khotba';
+  static const String khotbaPage = '/khotba-page';
   // static const String showVideo = '/show-video';
 }

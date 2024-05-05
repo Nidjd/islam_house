@@ -6,14 +6,14 @@ import 'package:islam_house/features/khotab/presentation/views/widgets/final_kho
 
 import 'package:url_launcher/url_launcher.dart';
 
-class Books extends StatefulWidget {
-  const Books({super.key});
+class Khotba extends StatefulWidget {
+  const Khotba({super.key});
 
   @override
-  State<Books> createState() => _BooksState();
+  State<Khotba> createState() => _KhotbaState();
 }
 
-class _BooksState extends State<Books> {
+class _KhotbaState extends State<Khotba> {
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as List<Attachment>;
@@ -28,7 +28,7 @@ class _BooksState extends State<Books> {
                 onTap: () async {
                   final Uri _url = Uri.parse(data[index].url!);
                  await launchUrl(_url);
-                  //  context.pushNamed(Routes.pdf, context,data[index].url);
+                  
                 },
               );
             }
