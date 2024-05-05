@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:islam_house/core/routing/routes.dart';
 import 'package:islam_house/features/article_section_page/presentation/views/article_page.dart';
 import 'package:islam_house/features/article_section_page/presentation/views/widgets/articles.dart';
+import 'package:islam_house/features/books/presentation/views/book_page.dart';
+import 'package:islam_house/features/books/presentation/views/widgets/books.dart';
 import 'package:islam_house/features/home/presentation/views/home_page.dart';
 import 'package:islam_house/features/videos_section_page.dart/presentation/views/video_details_view.dart';
 import 'package:islam_house/features/videos_section_page.dart/presentation/views/videos_section_page.dart';
@@ -30,6 +32,16 @@ class AppRoutes {
       case Routes.articles:
         return MaterialPageRoute(
           builder: (context) => const Articles(),
+          settings: RouteSettings(arguments: settings.arguments),
+        );
+        case Routes.booksPage:
+        return MaterialPageRoute(
+          builder: (context) => const BookPage(),
+          settings: RouteSettings(arguments: settings.arguments),
+        );
+      case Routes.books:
+        return MaterialPageRoute(
+          builder: (context) => const Books(),
           settings: RouteSettings(arguments: settings.arguments),
         );
       // case Routes.pdf:

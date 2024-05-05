@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:islam_house/features/books/data/models/books/attachment.dart';
+import 'package:islam_house/features/books/presentation/views/widgets/final_book_item.dart';
 
 
 
-import 'package:islam_house/features/article_section_page/data/models/article/attachment.dart';
-import 'package:islam_house/features/article_section_page/presentation/views/widgets/final_article_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Articles extends StatefulWidget {
-  const Articles({super.key});
+class Books extends StatefulWidget {
+  const Books({super.key});
 
   @override
-  State<Articles> createState() => _ArticlesState();
+  State<Books> createState() => _BooksState();
 }
 
-class _ArticlesState extends State<Articles> {
+class _BooksState extends State<Books> {
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as List<Attachment>;
@@ -23,7 +23,7 @@ class _ArticlesState extends State<Articles> {
         child: ListView.builder(
           itemBuilder: (context, index) {
             if (data[index].extensionType == "PDF") {
-              return FinalArticleItem(
+              return FinalBookItem(
                 label: data[index].description ?? "",
                 onTap: () async {
                   final Uri _url = Uri.parse(data[index].url!);

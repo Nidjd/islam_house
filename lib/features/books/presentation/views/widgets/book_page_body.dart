@@ -1,51 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islam_house/constants.dart';
+
+
 import 'package:islam_house/core/helpers/extensions.dart';
 import 'package:islam_house/core/routing/routes.dart';
 import 'package:islam_house/core/theming/styles.dart';
 import 'package:islam_house/core/utils/custom_error_message.dart';
 import 'package:islam_house/core/utils/custom_progress_indicator.dart';
-import 'package:islam_house/features/article_section_page/presentation/manager/cubit/get_articles_cubit.dart';
-import 'package:islam_house/features/article_section_page/presentation/views/widgets/article_item.dart';
+import 'package:islam_house/features/books/presentation/manager/cubit/get_books_cubit.dart';
+import 'package:islam_house/features/books/presentation/views/widgets/book_item.dart';
 
-class ArticlePageBody extends StatefulWidget {
-  const ArticlePageBody({
+class BookPageBody extends StatefulWidget {
+  const BookPageBody({
     super.key,
   });
 
   @override
-  State<ArticlePageBody> createState() => _ArticlePageBodyState();
+  State<BookPageBody> createState() => _BookPageBodyState();
 }
 
-class _ArticlePageBodyState extends State<ArticlePageBody> {
+class _BookPageBodyState extends State<BookPageBody> {
   int currentNumber = 1;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BlocBuilder<GetArticlesCubit, GetArticlesState>(
+        BlocBuilder<GetBooksCubit, GetBooksState>(
           builder: (context, state) {
-            if (state is GetArticlesSuccessState) {
+            if (state is GetBooksSuccessState) {
               return Expanded(
                 child: ListView.builder(
-                  itemBuilder: (context, index) => ArticleItem(
-                    label: state.article[index].title ?? '',
-                    description: state.article[index].description ?? '',
-                    name: state.article[index].preparedBy!.isEmpty
+                  itemBuilder: (context, index) => BookItem(
+                    label: state.book[index].title ?? '',
+                    description: state.book[index].description ?? '',
+                    name: state.book[index].preparedBy!.isEmpty
                         ? ''
-                        : state.article[index].preparedBy![0].title!,
-                    countArticle:
-                        state.article[index].attachments?.length.toString() ??
+                        : state.book[index].preparedBy![0].title!,
+                    countBooks:
+                        state.book[index].attachments?.length.toString() ??
                             '',
                     onTap: () {
-                      context.pushNamed(Routes.articles, context,state.article[index].attachments);
+                      context.pushNamed(Routes.books, context,state.book[index].attachments);
                     },
                   ),
-                  itemCount: state.article.length,
+                  itemCount: state.book.length,
                 ),
               );
-            } else if (state is GetArticlesFailureState) {
+            } else if (state is GetBooksFailureState) {
               return CustomErrorMessage(message: state.errMessage);
             } else {
               return const Expanded(child: CustomProgreesIndicator());
@@ -59,8 +61,8 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
             children: [
               TextButton(
                 onPressed: () async {
-                  await BlocProvider.of<GetArticlesCubit>(context)
-                      .getArticlesData(pageNumer: '1');
+                  await BlocProvider.of<GetBooksCubit>(context)
+                      .getBooksData(pageNumer: '0');
                   setState(() {});
                   currentNumber = 1;
                 },
@@ -71,8 +73,8 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
                   if (currentNumber > 1) {
                     currentNumber--;
                     setState(() {});
-                    await BlocProvider.of<GetArticlesCubit>(context)
-                        .getArticlesData(pageNumer: currentNumber.toString());
+                    await BlocProvider.of<GetBooksCubit>(context)
+                        .getBooksData(pageNumer: currentNumber.toString());
                   }
                 },
                 child: Text(
@@ -89,27 +91,27 @@ class _ArticlePageBodyState extends State<ArticlePageBody> {
               // ),
               TextButton(
                 onPressed: () async {
-                  if (currentNumber < pageNumbersForArticle!) {
+                  if (currentNumber < pageNumbersForBook!) {
                     currentNumber++;
                     setState(() {});
-                    await BlocProvider.of<GetArticlesCubit>(context)
-                        .getArticlesData(pageNumer: currentNumber.toString());
+                    await BlocProvider.of<GetBooksCubit>(context)
+                        .getBooksData(pageNumer: currentNumber.toString());
                   }
                 },
                 child: Text('next',
                     style: Styles.font16BlueBold.copyWith(
-                      color: currentNumber == pageNumbersForArticle
+                      color: currentNumber == pageNumbersForBook
                           ? Colors.grey
                           : Colors.blue[900],
                     )),
               ),
               TextButton(
                 onPressed: () async {
-                  await BlocProvider.of<GetArticlesCubit>(context)
-                      .getArticlesData(
-                          pageNumer: pageNumbersForArticle.toString());
+                  await BlocProvider.of<GetBooksCubit>(context)
+                      .getBooksData(
+                          pageNumer: pageNumbersForBook.toString());
                   setState(() {
-                    currentNumber = pageNumbersForArticle!;
+                    currentNumber = pageNumbersForBook!;
                   });
                 },
                 child: Text('last', style: Styles.font16BlueBold),

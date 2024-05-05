@@ -38,6 +38,10 @@ class HomePageBody extends StatelessWidget {
                                   .toString() ==
                               'articles') {
                             context.pushNamed(Routes.articlePage, context);
+                          } else if (state.siteContentList[index].blockName
+                                  .toString() ==
+                              'books') {
+                            context.pushNamed(Routes.booksPage, context);
                           }
                         },
                         itemCount: state.siteContentList[index].itemsCount!,

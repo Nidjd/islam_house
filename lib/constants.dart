@@ -71,3 +71,4 @@
 
 int? pageNumbers;
 int? pageNumbersForArticle;
+int? pageNumbersForBook;

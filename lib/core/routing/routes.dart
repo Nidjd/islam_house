@@ -4,6 +4,8 @@ class Routes {
   static const String videoDetailsView = '/video-details-view';
   static const String articlePage = '/article-page';
   static const String articles = '/articles';
-  static const String pdf = '/pdf';
+  
+  static const String books = '/books';
+  static const String booksPage = '/books-page';
   // static const String showVideo = '/show-video';
 }
