@@ -74,3 +74,4 @@ int? pageNumbersForArticle;
 int? pageNumbersForBook;
 int? pageNumbersForKhotab;
 int? pageNumbersForAudios;
+int? pageNumbersForQuran;

@@ -51,6 +51,10 @@ class HomePageBody extends StatelessWidget {
                                     .toString() ==
                                 'audios') {
                               context.pushNamed(Routes.audioPage, context);
+                            } else if (state.siteContentList[index].blockName
+                                    .toString() ==
+                                'quran') {
+                              context.pushNamed(Routes.quranPage, context);
                             }
                           },
                           itemCount: state.siteContentList[index].itemsCount!,

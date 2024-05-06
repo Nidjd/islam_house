@@ -5,15 +5,14 @@ import 'package:islam_house/features/quran/presentation/views/widgets/final_item
 
 
 
-
-class Audios extends StatefulWidget {
-  const Audios({super.key});
+class Quran extends StatefulWidget {
+  const Quran({super.key});
 
   @override
-  State<Audios> createState() => _AudiosState();
+  State<Quran> createState() => _QuranState();
 }
 
-class _AudiosState extends State<Audios> {
+class _QuranState extends State<Quran> {
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as List<Attachment>;

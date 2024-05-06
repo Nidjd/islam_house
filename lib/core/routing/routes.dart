@@ -14,5 +14,8 @@ class Routes {
   static const String audio = '/audio';
   static const String audioPage = '/audio-page';
   static const String audioPlayerScreen = '/audio-player-screen';
+
+   static const String quran = '/quran';
+  static const String quranPage = '/quran-page';
   // static const String showVideo = '/show-video';
 }

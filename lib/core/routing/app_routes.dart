@@ -3,13 +3,15 @@ import 'package:islam_house/core/routing/routes.dart';
 import 'package:islam_house/features/article_section_page/presentation/views/article_page.dart';
 import 'package:islam_house/features/article_section_page/presentation/views/widgets/articles.dart';
 import 'package:islam_house/features/audios/presentation/views/audio_page.dart';
-import 'package:islam_house/features/audios/presentation/views/widgets/audio_payer_screen.dart';
 import 'package:islam_house/features/audios/presentation/views/widgets/audios.dart';
 import 'package:islam_house/features/books/presentation/views/book_page.dart';
 import 'package:islam_house/features/books/presentation/views/widgets/books.dart';
 import 'package:islam_house/features/home/presentation/views/home_page.dart';
 import 'package:islam_house/features/khotab/presentation/views/khotba_page.dart';
 import 'package:islam_house/features/khotab/presentation/views/widgets/Khotba.dart';
+import 'package:islam_house/features/quran/presentation/views/quran_page.dart';
+import 'package:islam_house/features/quran/presentation/views/widgets/quran.dart';
+
 import 'package:islam_house/features/videos_section_page.dart/presentation/views/video_details_view.dart';
 import 'package:islam_house/features/videos_section_page.dart/presentation/views/videos_section_page.dart';
 
@@ -67,6 +69,16 @@ class AppRoutes {
       case Routes.audio:
         return MaterialPageRoute(
           builder: (context) => const Audios(),
+          settings: RouteSettings(arguments: settings.arguments),
+        );
+        case Routes.quranPage:
+        return MaterialPageRoute(
+          builder: (context) => const QuranPage(),
+          settings: RouteSettings(arguments: settings.arguments),
+        );
+      case Routes.quran:
+        return MaterialPageRoute(
+          builder: (context) => const Quran(),
           settings: RouteSettings(arguments: settings.arguments),
         );
       // case Routes.audioPlayerScreen:
