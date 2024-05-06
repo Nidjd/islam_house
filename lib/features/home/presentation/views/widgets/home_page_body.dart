@@ -26,7 +26,6 @@ class HomePageBody extends StatelessWidget {
                   Expanded(
                     child: GridView.builder(
                       itemBuilder: (context, index) {
-                        
                         return CardItem(
                           label:
                               state.siteContentList[index].blockName.toString(),
@@ -44,10 +43,14 @@ class HomePageBody extends StatelessWidget {
                                     .toString() ==
                                 'books') {
                               context.pushNamed(Routes.booksPage, context);
-                            }else if (state.siteContentList[index].blockName
+                            } else if (state.siteContentList[index].blockName
                                     .toString() ==
                                 'khotab') {
                               context.pushNamed(Routes.khotbaPage, context);
+                            } else if (state.siteContentList[index].blockName
+                                    .toString() ==
+                                'audios') {
+                              context.pushNamed(Routes.audioPage, context);
                             }
                           },
                           itemCount: state.siteContentList[index].itemsCount!,

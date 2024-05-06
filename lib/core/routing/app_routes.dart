@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:islam_house/core/routing/routes.dart';
 import 'package:islam_house/features/article_section_page/presentation/views/article_page.dart';
 import 'package:islam_house/features/article_section_page/presentation/views/widgets/articles.dart';
+import 'package:islam_house/features/audios/presentation/views/audio_page.dart';
+import 'package:islam_house/features/audios/presentation/views/widgets/audio_payer_screen.dart';
+import 'package:islam_house/features/audios/presentation/views/widgets/audios.dart';
 import 'package:islam_house/features/books/presentation/views/book_page.dart';
 import 'package:islam_house/features/books/presentation/views/widgets/books.dart';
 import 'package:islam_house/features/home/presentation/views/home_page.dart';
@@ -56,6 +59,21 @@ class AppRoutes {
           builder: (context) => const Khotba(),
           settings: RouteSettings(arguments: settings.arguments),
         );
+        case Routes.audioPage:
+        return MaterialPageRoute(
+          builder: (context) => const AudioPage(),
+          settings: RouteSettings(arguments: settings.arguments),
+        );
+      case Routes.audio:
+        return MaterialPageRoute(
+          builder: (context) => const Audios(),
+          settings: RouteSettings(arguments: settings.arguments),
+        );
+      // case Routes.audioPlayerScreen:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const AudioPlayerScreen(),
+      //     settings: RouteSettings(arguments: settings.arguments),
+      //   );
       // case Routes.pdf:
       //   return MaterialPageRoute(
       //     builder: (context) => const Pdf(),
